@@ -22,6 +22,8 @@ int main() {
        | Berechnungsoperation      |
        |                           |
        | (+, -, *, /)              |
+       | mit 'exit' beendest du    |
+       | den Rechner               |
        +---------------------------+
 
        Deine Eingabe:
