@@ -72,9 +72,7 @@ int main() {
                 break;
 
             case 'g':
-                if (rechenzeichen == 'g') {
-                    ergebnis = ggT(zahl1, zahl2);
-                }
+                ergebnis = ggT(zahl1, zahl2);
                break;
 
             default:
