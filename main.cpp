@@ -6,11 +6,27 @@
 using namespace std;
 
 int main() {
+
+
+
     while (true) {
         double zahl1 = 0 , zahl2 = 0, ergebnis = 0;
         char rechenzeichen;
 
-        cout << "\n Gib eine Rechenaufgabe ein oder beende das Programm mit 'exit': ";
+       // cout << "\nGib eine Rechenaufgabe ein oder beende das Programm mit 'exit':";
+       cout << R"(
+       +---------------------------+
+       |    TASCHENRECHNER MINI    |
+       +---------------------------+
+       | Gib eine kleine           |
+       | Berechnungsoperation      |
+       |                           |
+       | (+, -, *, /)              |
+       +---------------------------+
+
+       Deine Eingabe:
+       )" << endl;
+
         string eingabe;
         cin >> eingabe;
 
@@ -22,7 +38,7 @@ int main() {
         // ( Input prüft ob zahl) wenn nicht dann Fehlermeldung
         istringstream eingabeStream(eingabe);
         if (!(eingabeStream >> zahl1 >> rechenzeichen >> zahl2)) {
-            cout << "Ungültige Eingabe, bitte erneut eingeben.\n";
+            cout << "Ungueltige Eingabe, bitte erneut eingeben.\n";
             cin.clear(); // wird verwendet um den Fehlerzustand zurückzusetzen
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); // löscht jeglichen input der bei zahl1 war
             continue;
