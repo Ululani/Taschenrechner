@@ -21,15 +21,14 @@ int main() {
        Folgende Operationen sind machbar: +, -, *, /, g (ggT)
        *****************************************************************************
 
-       )"
-;
+       )";
 
     while (true) {
-        int zahl1 = 0 , zahl2 = 0, ergebnis = 0;
+        int zahl1 = 0, zahl2 = 0, ergebnis = 0;
         char rechenzeichen;
 
-       // cout << "\nGib eine Rechenaufgabe ein oder beende das Programm mit 'exit':";
-       cout << R"(
+        // cout << "\nGib eine Rechenaufgabe ein oder beende das Programm mit 'exit':";
+        cout << R"(
        ==============
        Deine Eingabe:
        )" << endl;
@@ -40,12 +39,6 @@ int main() {
         // Beenden Überprüfen
         if (eingabe == "exit") {
             break;
-        }
-
-        if (eingabe == "g"){
-            cout << "Rechnet den groessten gemeinsamen Teiler zweier Zahlen";
-            cout << "Beispieleingabe; 25 g 50";
-            continue;
         }
 
 
@@ -70,36 +63,30 @@ int main() {
                 ergebnis = zahl1 * zahl2;
                 break;
             case '/':
-                if (zahl2 != 0){
-                ergebnis = zahl1 / zahl2;
+                if (zahl2 != 0) {
+                    ergebnis = zahl1 / zahl2;
                 } else {
                     cout << "Division durch Null ist nicht erlaubt";
-                continue;
-                }
-                break;
-
-            case 'g':
-                if (eingabeStream.get() == 'g') {
-                    ergebnis = ggT(zahl1, zahl2);
-                } else {
-                    cout << "Unbekanntes Rechenzeichen.";
                     continue;
                 }
                 break;
 
+            case 'g':
+                if (rechenzeichen == 'g') {
+                    ergebnis = ggT(zahl1, zahl2);
+                }
+               break;
+
             default:
                 cout << "unbekanntes Rechenzeichen\n";
                 return 1;
+                }
+
+                // Ausgabe des Ergebnisses
+                cout << zahl1 << " " << rechenzeichen << " " << zahl2 << " = " << ergebnis << " \n";
         }
-
-
-
-
-
-        // Ausgabe des Ergebnisses
-        cout << zahl1 << " " << rechenzeichen << " " << zahl2 << " = " << ergebnis << " \n";
     }
-}
+
 
 // Definition der Funktion zum Berechnen des ggT (größten gemeinsamen Teilers)
 unsigned int ggT(int zahl1, int zahl2) {
