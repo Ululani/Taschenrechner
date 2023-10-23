@@ -3,29 +3,34 @@
 #include <string>
 #include <sstream>
 
+unsigned int ggT(int zahl1, int zahl2);
+
 using namespace std;
 
 int main() {
+    cout << R"(
+       *****************************************************************************
 
+       Taschenrechner mini Version
 
+       *****************************************************************************
+       Gib eine kleine Berechnungsoperation ein, wie zum Beispiel
+       5 + 3
+       4564 / 2
+
+       Folgende Operationen sind machbar: +, -, *, /, g (ggT)
+       *****************************************************************************
+
+       )"
+;
 
     while (true) {
-        double zahl1 = 0 , zahl2 = 0, ergebnis = 0;
+        int zahl1 = 0 , zahl2 = 0, ergebnis = 0;
         char rechenzeichen;
 
        // cout << "\nGib eine Rechenaufgabe ein oder beende das Programm mit 'exit':";
        cout << R"(
-       +---------------------------+
-       |    TASCHENRECHNER MINI    |
-       +---------------------------+
-       | Gib eine kleine           |
-       | Berechnungsoperation      |
-       |                           |
-       | (+, -, *, /)              |
-       | mit 'exit' beendest du    |
-       | den Rechner               |
-       +---------------------------+
-
+       ==============
        Deine Eingabe:
        )" << endl;
 
@@ -36,6 +41,13 @@ int main() {
         if (eingabe == "exit") {
             break;
         }
+
+        if (eingabe == "g"){
+            cout << "Rechnet den groessten gemeinsamen Teiler zweier Zahlen";
+            cout << "Beispieleingabe; 25 g 50";
+            continue;
+        }
+
 
         // ( Input prüft ob zahl) wenn nicht dann Fehlermeldung
         istringstream eingabeStream(eingabe);
@@ -58,7 +70,21 @@ int main() {
                 ergebnis = zahl1 * zahl2;
                 break;
             case '/':
+                if (zahl2 != 0){
                 ergebnis = zahl1 / zahl2;
+                } else {
+                    cout << "Division durch Null ist nicht erlaubt";
+                continue;
+                }
+                break;
+
+            case 'g':
+                if (eingabeStream.get() == 'g') {
+                    ergebnis = ggT(zahl1, zahl2);
+                } else {
+                    cout << "Unbekanntes Rechenzeichen.";
+                    continue;
+                }
                 break;
 
             default:
@@ -66,6 +92,19 @@ int main() {
                 return 1;
         }
 
+
+
+
+
+        // Ausgabe des Ergebnisses
         cout << zahl1 << " " << rechenzeichen << " " << zahl2 << " = " << ergebnis << " \n";
     }
+}
+
+// Definition der Funktion zum Berechnen des ggT (größten gemeinsamen Teilers)
+unsigned int ggT(int zahl1, int zahl2) {
+    if (zahl2 == 0) {
+        return zahl1;
+    }
+    return ggT(zahl2, zahl1 % zahl2);
 }
